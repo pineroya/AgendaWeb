@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+    <title>Home</title>
+    {% endblock %}
+  </head>
+
+{% block content %}
+<h1 style="color: whitesmoke">Formulario - Editar Usuario</h1>
+<h1 style="color: whitesmoke">de {{user.get_username}}</h1>
+  <body>
+    <main>
+        <div class="span9 contact_form">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <table>
+                    {{miFormulario.as_table}}
+                </table>
+                <input class="btn btn-secondary" type="submit", value="Enviar">
+            </form>
+           
+        </div>
+    </main>
+  </body>
+
+</html>
+{% endblock %}

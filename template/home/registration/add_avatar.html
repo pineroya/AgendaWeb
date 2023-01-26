@@ -1,0 +1,33 @@
+{% extends ".html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+    <title>Home</title>
+    {% endblock %}
+  </head>
+
+{% block content %}
+  <body>
+    <main>
+      <h3 style="color: rgb(252, 241, 241)">Cargar Avatar</h3>
+      {% if miFormulario.errors %}
+      <p style="color:red">Datos incorrectos, revisar</p>
+      {% endif %}
+      <p style="color: whitesmoke">Si no hay formulario click aqui-->
+          <button class="btn btn-secondary">
+          <a href="/accounts/add_avatar" class="link">Agregar</a>
+          </button>
+      </p>
+      <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ miFormulario.as_table }}
+          {{ miFormulario.media}}
+          <input type="submit" value="Agregar">
+      </form>
+    </main>
+  </body>
+
+</html>
+{% endblock %}

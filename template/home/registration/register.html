@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+    <title>Home</title>
+    {% endblock %}
+  </head>
+
+{% block content %}
+  <body>
+    <main>
+      <div class="span9 contact_form">
+        <div id="note"></div>
+        <div id="fields"></div>
+        <form id="contact-form-face" class="clearfix" action="#" action="" method="POST">
+            <table>
+            {% csrf_token %}
+        
+            {{form.as_table}}
+            
+            </table>
+            <button type="submit">Registrate aquí</button>
+        </form>
+
+      </div>
+    </main>
+  </body>
+
+</html>
+{% endblock %}

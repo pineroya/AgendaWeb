@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+    <title>Home</title>
+    {% endblock %}
+  </head>
+
+{% block content %}
+<div class="container">
+  <div class="col-lg-4 col-md-4 col-sm-6 padbot30">
+    <h4>Formulario - Edita tu Bio y Link web</h4>
+    <h4><b>{{user.get_username}}</b></h4>
+        <div class="span9 contact_form">
+          <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+              <table>
+              {{miFormulario.as_table}}
+              </table>
+              <button class="btn btn-secondary" type="submit">Actualizar datos</button>
+          </form>  
+        </div>
+  </div>
+</div>
+{% endblock %}
+</html>
