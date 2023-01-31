@@ -1,6 +1,9 @@
 from django.shortcuts import render, HttpResponse
 from django.urls import reverse
-from loginApp.models import Avatar, Profile
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from loginApp.models import Avatar
+from .models import AgendaModel
 
 # Create your views here.
 
@@ -16,10 +19,31 @@ def blogpost(request):
 
     return render (request, 'agenda/blog-post.html')
 
-def index(request):
+# def agenda(request):
 
-    return render (request, 'agenda/index.html')
+#     return render (request, 'agenda/index.html')
 
 def portfolio(request):
 
     return render (request, 'agenda/portfolio-post.html')
+
+class ContactList(ListView):
+    template_name = "agenda/contact_list.html"
+    model = AgendaModel
+
+class ContactDetail(DetailView):
+    model = AgendaModel
+
+class ContactCreation(CreateView):
+    model = AgendaModel
+    succes_url = reverse_lazy('contact:list')
+    fields = ['name', 'last_name', 'tel_number', 'addres', 'email', 'web', 'bio', 'picture']
+
+class ContactUpdate(UpdateView):
+    model = AgendaModel
+    success_url = reverse_lazy('contact:list')
+    fields = ['name', 'last_name', 'tel_number', 'addres', 'email', 'web', 'bio', 'picture']
+
+class ContactDelete(DeleteView):
+    model = AgendaModel
+    success_url = reverse_lazy('contact:list')

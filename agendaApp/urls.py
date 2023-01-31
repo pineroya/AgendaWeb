@@ -3,13 +3,18 @@
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))"""
 
 from django.urls import include, path
-from . import views
+from django.conf.urls import url
+from agendaApp.views import home, blog, blogpost, portfolio, ContactCreation, ContactDelete, ContactList, ContactDetail, ContactUpdate 
 from django.conf import settings
 
 urlpatterns = [
-    path('', views.home, name = 'Home'),
-    path('blog/', views.blog, name = 'Blog'),
-    path('blogpost/', views.blogpost, name = 'Blogpost'),
-    path('index/', views.index, name = 'Index'),
-    path('portfolio/', views.portfolio, name = 'Portfolio'),
+    path('', home, name = 'Home'),
+    path('blog/', blog, name = 'Blog'),
+    path('blogpost/', blogpost, name = 'Blogpost'),
+    path('portfolio/', portfolio, name = 'Portfolio'),
+    url(r'^list', ContactList.as_view(), name='List'),
+    url(r'^list(?P<pk>\d+)$', ContactDetail.as_view(), name='Detail'),
+    url(r'^nuevo$', ContactCreation.as_view(), name='New'),
+    url(r'^editar/(?P<pk>\d+)$', ContactUpdate.as_view(), name='edit'),
+    url(r'^borrar/(?P<pk>\d+)$', ContactDelete.as_view(), name='delete'),
 ]

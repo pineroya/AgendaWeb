@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% block title %}
+    <title>Contacto | list</title>
+{% endblock %}
+</head>
+
+{% block content %}
+<p>
+    <a href="{% url 'contacts:new' %}">Agregar curso</a>
+</p>
+
+<ul>
+    {% for contact in object_list %}
+        <li>
+            <p>{{ contact.name }}</p>
+            <p>
+                <a href="{% url "contacts:detail" contact.id %}">Ver</a> | 
+                <a href="{% url "contacts:edit" contact.id %}">Editar</a> | 
+                <a href="{% url "contacts:delete" contact.id %}">Borrar</a> 
+            </p>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+</html>

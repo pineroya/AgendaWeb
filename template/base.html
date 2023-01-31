@@ -74,8 +74,8 @@
 								<li class="first scroll_btn {% if request.path == '/' %}active{% endif %}">
 									<a href="{% url 'Home' %}">Home</a>
 								</li>
-								<li class="scroll_btn {% if request.path == '/blog' %}active{% endif %}">
-									<a href="{% url 'Blog' %}">Agenda</a>
+								<li class="scroll_btn {% if request.path == '#' %}active{% endif %}">
+									<a href="">Agenda</a>
 								</li>
 								<li class="scroll_btn {% if request.path == '#' %}active{% endif %}">
 									<a href="index.html#projects">Projects</a>
@@ -83,14 +83,17 @@
 								<li class="scroll_btn last {% if request.path == '#' %}active{% endif %}">
 									<a href="index.html#contacts">Contacts</a>
 								</li>
-								<li class="sub-menu {% if request.path == '#' %}active{% endif %}">
+								<li class="sub-menu">
 									<a href="javascript:void(0);">Pages</a>
 									<ul>
-										<li class="active"><a href="blog.html">Blog</a>
+										<li class="sub-menu {% if request.path == '/blog' %}active{% endif %}">
+											<a href="{% url 'Blog' %}">Blog</a>
 										</li>
-										<li><a href="blog-post.html">Blog Post</a>
+										<li class="sub-menu {% if request.path == '/blogpost' %}active{% endif %}">
+											<a href="{% url 'Blogpost' %}">Blog Post</a>
 										</li>
-										<li><a href="portfolio-post.html">Portfolio Single Work</a></li>
+										<li class="sub-menu {% if request.path == '/portfolio' %}active{% endif %}">
+											<a href="{% url 'Portfolio' %}">Portfolio Single Work</a></li>
 									</ul>
 								</li>
 								{% if request.user.is_authenticated %}

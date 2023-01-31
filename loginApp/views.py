@@ -65,8 +65,8 @@ def editProfile(request):
             informacion = miFormulario.cleaned_data
 
             usuario.email = informacion['email']
-            usuario.first_name = informacion.cleaned_data
-            usuario.last_name = informacion.cleaned_data
+            usuario.first_name = informacion['first_name']
+            usuario.last_name = informacion['last_name']
             usuario.save()
 
             return render(request, "home/registration/my_profile.html")

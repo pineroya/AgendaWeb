@@ -13,12 +13,17 @@
     <main>
         {% if request.user.is_authenticated %}
             <div class="linksCategorias">
-                <img width= "80px" height="80px" src="{{url}}">
-                <li>Usuario: {{ user.get_username }}</li>
-                <li>Email: {{ user.email }}</li>
-                <li>Nombre y Apellido: {{ user.first_name }} {{ user.last_name }}</li>
-                <li>Tu Bio: {{ user.profile.bio }}</li>
-                <li>Tu Website: {{ user.profile.website_url }}</li>
+              <img width= "80px" height="80px" src="{{url}}">
+              <li>Usuario: {{ user.get_username }}</li>
+              <li>Email: {{ user.email }}</li>
+              <li>Nombre y Apellido: {{ user.first_name }} {{ user.last_name }}</li>
+              <li>Tu Bio: {{ user.profile.bio }}</li>
+              <li>Tu Website: {{ user.profile.website_url }}</li>
+            </div>
+            <div class="linksCategorias">
+              <p><a href="{% url 'Edit_Profile' %}"><b>Editar el perfil</b></a></p>
+              <p><a href="{% url 'Add_Avatar' %}"><b>Editar foto</b></a></p>
+              <p><a href="{% url 'Edit_BW' %}"><b>Editar Biografiía y Web</b></a></p>
             </div>
         {% endif %}
     </main>
