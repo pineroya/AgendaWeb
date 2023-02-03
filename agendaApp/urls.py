@@ -12,9 +12,9 @@ urlpatterns = [
     path('blog/', blog, name = 'Blog'),
     path('blogpost/', blogpost, name = 'Blogpost'),
     path('portfolio/', portfolio, name = 'Portfolio'),
-    url(r'^list', ContactList.as_view(), name='List'),
-    url(r'^list(?P<pk>\d+)$', ContactDetail.as_view(), name='Detail'),
-    url(r'^nuevo$', ContactCreation.as_view(), name='New'),
+    url(r'^list', ContactList.as_view(), name='list'),
+    url(r'^list(?P<pk>\d+)$', ContactDetail.as_view(), name='detail'),
+    url(r'^nuevo$', ContactCreation.as_view(), name='new'),
     url(r'^editar/(?P<pk>\d+)$', ContactUpdate.as_view(), name='edit'),
     url(r'^borrar/(?P<pk>\d+)$', ContactDelete.as_view(), name='delete'),
 ]

@@ -19,9 +19,10 @@ from django.conf.urls import url
 from django.conf import settings
 # from django.conf.urls.static import static
 
+app_name = 'contact'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('loginApp.urls')),
-    path('', include('agendaApp.urls', namespace='app_agenda')),
+    path('', include('agendaApp.urls')),
 ]
 # urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

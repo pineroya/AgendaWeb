@@ -9,22 +9,32 @@
 </head>
 
 {% block content %}
-<p>
-    <a href="{% url 'contacts:new' %}">Agregar curso</a>
-</p>
-
-<ul>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Nombre y apellido</td>
+            <td>Num Tel</td>
+            <td>Direccion</td>
+            <td>Bio</td>
+            <td>Pagina Web</td>
+        </tr>
+    </thead>
+    <tbody>
     {% for contact in object_list %}
-        <li>
-            <p>{{ contact.name }}</p>
-            <p>
-                <a href="{% url "contacts:detail" contact.id %}">Ver</a> | 
-                <a href="{% url "contacts:edit" contact.id %}">Editar</a> | 
-                <a href="{% url "contacts:delete" contact.id %}">Borrar</a> 
-            </p>
-        </li>
+        <tr>
+            <td>{{ contact.name }} {{ contact.last_name }}</td>
+            <td>{{ contact.tel_number }}</td>
+            <td>{{ contact.addres }}</td>
+            <td>{{ contact.bio }}</td>
+            <td>{{ contact.web }}</td>
+        </tr>
     {% endfor %}
-</ul>
-
+    </tbody>
+</table>
 {% endblock %}
 </html>
+<!-- <p>
+    <a href="{% url "contacts:detail" contact.id %}">Ver</a> | 
+    <a href="{% url "contacts:edit" contact.id %}">Editar</a> | 
+    <a href="{% url "contacts:delete" contact.id %}">Borrar</a> 
+</p> -->

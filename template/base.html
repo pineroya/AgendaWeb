@@ -74,14 +74,14 @@
 								<li class="first scroll_btn {% if request.path == '/' %}active{% endif %}">
 									<a href="{% url 'Home' %}">Home</a>
 								</li>
-								<li class="scroll_btn {% if request.path == '#' %}active{% endif %}">
-									<a href="">Agenda</a>
+								<li class="scroll_btn {% if request.path == '/list' %}active{% endif %}">
+									<a href="% url 'contacts:list' %">No Funciona</a>
 								</li>
 								<li class="scroll_btn {% if request.path == '#' %}active{% endif %}">
-									<a href="index.html#projects">Projects</a>
+									<a href="">Projects</a>
 								</li>
 								<li class="scroll_btn last {% if request.path == '#' %}active{% endif %}">
-									<a href="index.html#contacts">Contacts</a>
+									<a href="">Contact</a>
 								</li>
 								<li class="sub-menu">
 									<a href="javascript:void(0);">Pages</a>
