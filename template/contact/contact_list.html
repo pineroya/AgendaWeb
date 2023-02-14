@@ -13,28 +13,32 @@
     <thead>
         <tr>
             <td>Nombre y apellido</td>
+            <td>Foto</td>
             <td>Num Tel</td>
             <td>Direccion</td>
-            <td>Bio</td>
+            <td>Correo electronico</td>
             <td>Pagina Web</td>
+            <td>Bio</td>
         </tr>
     </thead>
     <tbody>
     {% for contact in object_list %}
         <tr>
             <td>{{ contact.name }} {{ contact.last_name }}</td>
+            <td>{{ contact.picture }}</td>
             <td>{{ contact.tel_number }}</td>
             <td>{{ contact.addres }}</td>
-            <td>{{ contact.bio }}</td>
+            <td>{{ contact.email }}</td>
             <td>{{ contact.web }}</td>
+            <td>{{ contact.bio }}</td>
+            <p>
+                <a class="btn btn-primary" href="{% url 'contact:detail' contact.id %}">Ver</a> | 
+                <a class="btn btn-primary" href="{% url 'contact:edit' contact.id %}">Editar</a> | 
+                <a class="btn btn-primary" href="{% url 'contact:delete' contact.id %}">Borrar</a> 
+            </p>
         </tr>
     {% endfor %}
     </tbody>
 </table>
 {% endblock %}
 </html>
-<!-- <p>
-    <a href="{% url "contacts:detail" contact.id %}">Ver</a> | 
-    <a href="{% url "contacts:edit" contact.id %}">Editar</a> | 
-    <a href="{% url "contacts:delete" contact.id %}">Borrar</a> 
-</p> -->
