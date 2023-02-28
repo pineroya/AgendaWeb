@@ -5,5 +5,6 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 
 class agendaForm(forms.ModelForm):
-    model = AgendaModel
-    fields = ['name', 'last_name', 'tel_number', 'addres', 'email', 'web', 'bio', 'picture']
+    class Meta:
+        model = AgendaModel
+        fields = ['name', 'last_name', 'tel_number', 'addres', 'email', 'web', 'bio', 'picture']

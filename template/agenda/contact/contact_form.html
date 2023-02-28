@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% block title %}
+    <title>Contacto nuevo | formulario</title>
+{% endblock %}
+</head>
+
+{% block content %}
+<div class="container mt-3">
+    <h2>Nuevo Contacto</h2>
+    <hr>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+</div>
+{% endblock %}
+</html>

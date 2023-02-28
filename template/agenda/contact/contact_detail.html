@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% block title %}
+    <title>Detalle | list</title>
+{% endblock %}
+</head>
+
+{% block content %}
+  <h1>{{ contact.name }} {{ contact.last_name }}</h1>
+  <img src="{{ contact.picture.url }}" alt="{{ contact.name }}" style="max-width: 300px; max-height: 300px;">
+  <p>Número de teléfono: {{ contact.tel_number }}</p>
+  <p>Dirección: {{ contact.addres }}</p>
+  <p>Correo electrónico: {{ contact.email }}</p>
+  <p>Página web: {{ contact.web }}</p>
+  <p>Bio: {{ contact.bio }}</p>
+  <p>
+    <a href="{% url 'contact:list' %}">Regresar a la lista de contactos</a>
+  </p>
+{% endblock %}
+</html>

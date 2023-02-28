@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+    <title>Editar perfil</title>
+    {% endblock %}
+  </head>
+  {% block content %}
+  <div class="container">
+      <h3 class="span9 contact_form">Editar perfil de {{ request.user.username }}</h3>
+      <div class="row">
+          <div class="col-md-4">
+              <img src="{{ avatar.imagen.url }}" class="img-thumbnail">
+              <form action="" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ user_form.as_p }}
+                  {{ profile_form.as_p }}
+                  {{ avatar_form.as_p }}
+                  <input type="submit" value="Actualizar perfil" class="btn btn-primary">
+              </form>
+          </div>
+      </div>
+  </div>
+  {% endblock %}
+</html>

@@ -11,8 +11,8 @@
 {% block content %}
 <table class="table table-bordered">
     <thead>
-        <tr>
-            <td>Nombre y apellido</td>
+        <tr class="texto-destacado">
+            <td >Nombre y apellido</td>
             <td>Foto</td>
             <td>Num Tel</td>
             <td>Direccion</td>
@@ -25,7 +25,7 @@
     {% for contact in object_list %}
         <tr>
             <td>{{ contact.name }} {{ contact.last_name }}</td>
-            <td>{{ contact.picture }}</td>
+            <td><img width= "60px" height="60px" src="{{ contact.picture.url}}"></td>
             <td>{{ contact.tel_number }}</td>
             <td>{{ contact.addres }}</td>
             <td>{{ contact.email }}</td>

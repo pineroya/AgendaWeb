@@ -74,11 +74,16 @@
 								<li class="first scroll_btn {% if request.path == '/' %}active{% endif %}">
 									<a href="{% url 'Home' %}">Home</a>
 								</li>
-								<li class="scroll_btn {% if request.path == '/list' %}active{% endif %}">
+								<li class="sub-menu {% if request.path == '/list' %}active{% endif %}">
 									<a  href="{% url 'contact:list' %}">Agenda</a>
+									<ul>
+										<li class="sub-menu {% if request.path == '/new' %}active{% endif %}">
+											<a href="{% url 'contact:new' %}">Nuevo contacto</a>
+										</li>
+									</ul>
 								</li>
-								<li class="scroll_btn {% if request.path == '#' %}active{% endif %}">
-									<a href="">Projects</a>
+								<li class="scroll_btn {% if request.path == '/admin' %}active{% endif %}">
+									<a href="">Admin</a>
 								</li>
 								<li class="scroll_btn last {% if request.path == '#' %}active{% endif %}">
 									<a href="">Contact</a>
@@ -97,11 +102,11 @@
 									</ul>
 								</li>
 								{% if request.user.is_authenticated %}
-									<img width= "40px" height="40px" src="{{url}}">
+									<img width= "40px" height="40px" src="{{url}}" alt="Avatar">
 									<li class="sub-menu">
 										<a href="javascript:void(0);">{{user.get_username}}</a>
 										<ul>
-											<li class="active"><a href="/accounts/my_profile"> Perfil</a></li>
+											<li class="active"><a href="/accounts/profile"> Perfil</a></li>
 											<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
 										</ul>
 									</li>

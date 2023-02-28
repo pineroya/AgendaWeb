@@ -4,23 +4,16 @@
 
 from django.urls import include, path
 from loginApp import views
+from loginApp.views import LoginView, RegisterView, ProfileView, EditProfileView
 from django.contrib.auth.views import LogoutView
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('accounts/login/', views.login_request, name = 'login'),
-    path('accounts/register/', views.register, name = 'Register'),
+    path('accounts/login/', LoginView.as_view(), name = 'login'),
+    path('accounts/register/', RegisterView.as_view(), name = 'Register'),
     path('accounts/logout/', LogoutView.as_view(template_name='home/registration/logged_out.html'), name='logout'),
-    path('accounts/my_profile/', views.myProfile, name="My_Profile"),
-    path('accounts/edit_profile/', views.editProfile, name = 'Edit_Profile'),
-    path('accounts/edit_bw/', views.editBW, name="Edit_BW"),
-    path('accounts/add_avatar/', views.addAvatar, name= "Add_Avatar"),
+    path('accounts/profile/', ProfileView.as_view(), name='Profile'),
+    path('accounts/edit_profile/', EditProfileView.as_view(), name = 'Edit_Profile'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-# [
-#     path('cuentas/password_change/done/', views.password_change_done, name = 'password_done'),
-#     path('cuentas/', views.contacto, name = "Formulario_Contacto"),
-#     path('contactook/', views.contacto_enviado, name = "Contacto_Enviado"),
-
-# ]

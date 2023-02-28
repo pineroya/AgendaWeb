@@ -1,114 +1,94 @@
 import imp
-from django.views import generic
+from django.shortcuts import render, redirect
+from django.views import View
 from django.core.mail import send_mail
-from django.shortcuts import HttpResponse, render
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView, FormView
+from django.views.generic import TemplateView
 from django.urls import reverse_lazy
-from loginApp.forms import UserRegisterForm, UserEditForm, BioWebForm, ContactForm, AvatarForm
+from loginApp.forms import UserRegisterForm, UserEditForm, ContactForm, ProfileEditForm, AvatarForm
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
 from loginApp.models import Avatar, Profile
 
 # Create your views here.
+#cuando se registra un usuario nuevo no se crea un Perfil para ese usuario y no se puede redireccionar a Edit_Profile para agregar el avatar
 
-def register(request):
-    if request.method == "POST":
-        form = UserRegisterForm(request.POST)
 
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            usuario = form.save()
-            login(request, usuario)
+class RegisterView(CreateView):
+    form_class = UserRegisterForm
+    template_name = 'accounts/register/register.html'
+    success_url = reverse_lazy('login')
 
-            return render(request, "home/add_avatar.html")
-    else:
-        form = UserRegisterForm()
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        # Authenticate and login the user after registration
+        user = authenticate(
+            username=form.cleaned_data['username'],
+            password=form.cleaned_data['password1'],
+        )
+        login(self.request, user)
+        # Redirect the user to the edit profile page
+        return redirect('Edit_Profile')
+
+class LoginView(LoginView):
+    form_class = AuthenticationForm
+    template_name = 'accounts/register/login.html'
+    success_url = reverse_lazy('Home')
     
-    return render(request, "home/registration/register.html", {'form': form})
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/register/profile.html'
 
-def login_request(request):
-    if request.method == "POST":
-        form = AuthenticationForm(request, data = request.POST)
-
-        if form.is_valid():
-            usuario = form.cleaned_data.get('username')
-            contrasenia = form.cleaned_data.get('password')
-            user = authenticate(username=usuario, password=contrasenia)
-
-            if user is not None:
-                login(request, user)
-
-                return render(request, "home/home.html", {"mensaje": f"Bienvenido {usuario}"})
-            else:
-                messages.error(request, 'usuario no válido')
-        else:
-            messages.error(request, 'información incorrecta')
-        
-    form = AuthenticationForm()
-    return render(request, "home/registration/login.html", {'form': form})
-
-def myProfile(request):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = Profile.objects.get(user=self.request.user)
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+        context['url'] = avatar.imagen.url
+        context['profile'] = profile
+        return context
     
-    avatares = Avatar.objects.filter(user=request.user.id)
-    return render(request, "home/registration/my_profile.html", {'url':avatares[0].imagen.url})
+class EditProfileView(LoginRequiredMixin, View):
+    def get(self, request):
+        user_form = UserEditForm(instance=request.user)
+        profile = Profile.objects.get(user=request.user)
+        profile_form = ProfileEditForm(instance=profile)
+        avatar = Avatar.objects.filter(user=request.user).first()
+        avatar_form = AvatarForm(instance=avatar)
+        context = {
+            'user_form': user_form,
+            'profile_form': profile_form,
+            'avatar_form': avatar_form
+        }
+        return render(request, 'accounts/register/editprofile.html', context)
 
-def editProfile(request):
-    usuario = request.user
-    avatares = Avatar.objects.filter(user=request.user.id)
+    def post(self, request):
+        user_form = UserEditForm(request.POST, instance=request.user)
+        profile = Profile.objects.get(user=request.user)
+        profile_form = ProfileEditForm(request.POST, instance=profile)
+        avatar = Avatar.objects.filter(user=request.user).first()
+        avatar_form = AvatarForm(request.POST, request.FILES, instance=avatar)
 
-    if request.method == "POST":
-        miFormulario = UserEditForm(request.POST)
+        if user_form.is_valid() and profile_form.is_valid() and avatar_form.is_valid():
+            user_form.save()
+            profile_form.save(commit=False)
+            profile_form.instance.user = request.user
+            profile_form.save()
 
-        if miFormulario.is_valid():
-            informacion = miFormulario.cleaned_data
+            if avatar_form.cleaned_data.get('imagen', None):
+                avatar = avatar_form.save(commit=False)
+                avatar.user = request.user
+                avatar.save()
 
-            usuario.email = informacion['email']
-            usuario.first_name = informacion['first_name']
-            usuario.last_name = informacion['last_name']
-            usuario.save()
+            return redirect('Home')
 
-            return render(request, "home/registration/my_profile.html")
+        context = {
+            'user_form': user_form,
+            'profile_form': profile_form,
+            'avatar_form': avatar_form
+        }
+        return render(request, 'accounts/register/editprofile.html', context)
     
-    else:
-        miFormulario = UserEditForm(initial={'email':usuario.email})
-    return render(request, "home/registration/editprofile.html", {'miFormulario': miFormulario, 'usuario': usuario, 'url':avatares[0].imagen.url})
-
-def editBW(request):
-    avatares = Avatar.objects.filter(user=request.user.id)
-
-    if request.method == "POST":
-        miFormulario = BioWebForm(request.POST)
-
-        if miFormulario.is_valid():
-
-            u = User.objects.get(username=request.user)
-            bioweb = Profile(user=u, bio=miFormulario.cleaned_data['bio'], website_url=miFormulario.cleaned_data['website_url'])
-            bioweb.save()
-
-            return render(request, 'home/home.html')
-    else:
-        miFormulario=BioWebForm()
-    return render (request, 'home/registration/editbw.html', {'miFormulario': miFormulario, 'url':avatares[0].imagen.url})
-
-def addAvatar(request):
-
-
-    if request.method == "POST":
-
-        miFormulario = AvatarForm(request.POST, request.FILES)
-
-        if miFormulario.is_valid():
-
-            u = User.objects.get(username=request.user)
-            avatar = Avatar (user=u, imagen=miFormulario.cleaned_data['imagen'])
-            avatar.save()
-
-            return render (request, "home/home.html")
-
-    else:
-
-        miFormulario=AvatarForm()
-
-    return render (request, "home/registration/add_avatar.html", {'miFormulario': miFormulario})

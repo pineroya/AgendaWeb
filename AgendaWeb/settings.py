@@ -141,5 +141,5 @@ MESSAGE_TAGS={
     mensajes_de_error.ERROR: 'danger',
 }
 
-LOGIN_URL = '/user/login'
+LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/'
