@@ -15,24 +15,26 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from loginApp.models import Avatar, Profile
 
+
 # Create your views here.
-#cuando se registra un usuario nuevo no se crea un Perfil para ese usuario y no se puede redireccionar a Edit_Profile para agregar el avatar
 
 
 class RegisterView(CreateView):
     form_class = UserRegisterForm
     template_name = 'accounts/register/register.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('Login')
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        # Authenticate and login the user after registration
+        # Autentica al usuario recien registrado
         user = authenticate(
             username=form.cleaned_data['username'],
             password=form.cleaned_data['password1'],
         )
         login(self.request, user)
-        # Redirect the user to the edit profile page
+        # Loguea al usuario recien registrado
+        profile = Profile.objects.create(user=user)
+        # Crea un perfil al usuario registrado y luego redirecciona a Editar el perfil
         return redirect('Edit_Profile')
 
 class LoginView(LoginView):
