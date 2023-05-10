@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('loginApp.urls')),
     path('', include('blogApp.urls')),
     url('', include('agendaApp.urls')),
+    url('', include('contactoApp.urls')),
 ]

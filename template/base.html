@@ -82,11 +82,8 @@
 										</li>
 									</ul>
 								</li>
-								<li class="scroll_btn {% if request.path == '/admin' %}active{% endif %}">
-									<a href="">Admin</a>
-								</li>
-								<li class="scroll_btn last {% if request.path == '#' %}active{% endif %}">
-									<a href="">Contact</a>
+								<li class="scroll_btn last {% if request.path == '/contacto' %}active{% endif %}">
+									<a href="{% url 'Contacto' %}">Contactanos</a>
 								</li>
 								<li class="sub-menu">
 									<a href="javascript:void(0);">Pages</a>
@@ -106,6 +103,9 @@
 									<li class="sub-menu">
 										<a href="javascript:void(0);">{{user.get_username}}</a>
 										<ul>
+											<li class="scroll_btn {% if request.path == '/admin' %}active{% endif %}">
+												<a href="{% url 'admin:index' %}">Admin</a>
+											</li>
 											<li class="active"><a href="/accounts/profile"> Perfil</a></li>
 											<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
 										</ul>

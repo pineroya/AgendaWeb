@@ -4,27 +4,26 @@
 <html lang="en">
   <head>
     {% block title %}
-    <title>Home</title>
+    <title>Contactanos</title>
     {% endblock %}
   </head>
 
 {% block content %}
   <body>
     <main>
-      <div class="span9 contact_form">
-        <div id="note"></div>
-        <div id="fields"></div>
-        <form id="contact-form-face" class="clearfix" action="#" method="POST">
+      <div style="margin:auto; width:50%;">
+        <h1>Contactanos vía mail</h1>
+      </div>
+        <!-- CONTACT FORM -->
+        <form id="contact-form-face" class="clearfix" action="#" method="POST" style="margin:auto; width:50%;">
             <table>
             {% csrf_token %}
         
             {{form.as_table}}
             
             </table>
-            <button type="submit">Registrate aquí</button>
+            <button type="submit">Enviar correo</button>
         </form>
-
-      </div>
     </main>
   </body>
 

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'agendaApp',
     'loginApp',
     'blogApp',
+    'contactoApp'
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'AgendaWeb/media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Configuracion mail
+#EMAIL_BACKEND= 'django.core.mail.backends.smpt.EmailBackend'
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '36bb83e6b9120f'
+EMAIL_HOST_PASSWORD = 'fe996845147d6b'
+EMAIL_PORT = '2525'
 
 MESSAGE_TAGS={
     mensajes_de_error.DEBUG: 'debug',
