@@ -4,9 +4,9 @@
 
 from django.urls import include, path
 from django.conf.urls import url
-from .views import ContactoView
+from .views import ContactanosView
 from django.conf import settings
 
 urlpatterns = [
-    path('contacto/', ContactoView.as_view(), name = 'Contacto'),
+    path('contactanos/', ContactanosView.as_view(), name = 'Contactanos'),
 ]

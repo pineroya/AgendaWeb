@@ -134,11 +134,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'AgendaWeb/media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Configuracion mail
+#Configuracion mail con mailtrap.io
 #EMAIL_BACKEND= 'django.core.mail.backends.smpt.EmailBackend'
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '36bb83e6b9120f'
-EMAIL_HOST_PASSWORD = 'fe996845147d6b'
+
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = 'f1d176033b926d'
+EMAIL_HOST_PASSWORD = '26f9e4889bcc7a'
 EMAIL_PORT = '2525'
 
 MESSAGE_TAGS={
