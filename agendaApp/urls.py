@@ -10,8 +10,8 @@ from django.conf import settings
 app_name = 'contact'
 urlpatterns = [
     url(r'^list', ContactList.as_view(), name='list'),
-    url(r'^list(?P<pk>\d+)$', ContactDetail.as_view(), name='detail'),
     url(r'^new$', ContactCreation.as_view(), name='new'),
+    url(r'^list(?P<pk>\d+)$', ContactDetail.as_view(), name='detail'),
     url(r'^editar/(?P<pk>\d+)$', ContactUpdate.as_view(), name='edit'),
     url(r'^borrar/(?P<pk>\d+)$', ContactDelete.as_view(), name='delete'),
 ]

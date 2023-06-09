@@ -8,20 +8,26 @@
     {% endblock %}
   </head>
   {% block content %}
-  <div class="container">
-      <h3 class="span9 contact_form">Editar perfil de {{ request.user.username }}</h3>
-      <div class="row">
-          <div class="col-md-4">
-              <img src="{{ avatar.imagen.url }}" class="img-thumbnail">
-              <form action="" method="post" enctype="multipart/form-data">
+  <section  class="form-perfil">
+    <div>
+        <h5>Editar perfil de {{ request.user.username }}</h5>
+            <div>
+                <form action="" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
-                  {{ user_form.as_p }}
-                  {{ profile_form.as_p }}
-                  {{ avatar_form.as_p }}
-                  <input type="submit" value="Actualizar perfil" class="btn btn-primary">
-              </form>
-          </div>
-      </div>
-  </div>
+                  {{ user_form.as_ul }}
+                  {{ profile_form.as_ul }}
+                  {{ avatar_form.as_ul }}
+                    <input type="submit" value="Actualizar perfil" class="buttons">
+                </form>
+            </div>
+    </div>
+</section>
   {% endblock %}
 </html>
+
+<!-- <input type="text" name="nombre" value="" placeholder="Nombre" class="controls">
+<input type="text" name="apellido" value="" placeholder="Apellido" class="controls">
+<input type="email" name="mail" value="" placeholder="Direccion de correo electronico" class="controls">
+<input type="text" name="bio" value="" placeholder="Biografia" class="controls-bio">
+<input type="text" name="website" value="" placeholder="URL de tu sitio web" class="controls-url">
+<input type="file" name="imagen" value="" class="file-input"> -->

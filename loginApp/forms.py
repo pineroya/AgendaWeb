@@ -17,6 +17,9 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
         help_texts = {k:"" for k in fields}
+        widgets = {
+            'username':forms.TextInput(attrs={'class': 'form-control'})
+        }
 
 ########
 class UserEditForm(forms.ModelForm):

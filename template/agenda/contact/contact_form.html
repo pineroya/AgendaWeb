@@ -10,14 +10,11 @@
 
 {% block content %}
 <div class="container mt-3">
-    <h2>Nuevo Contacto</h2>
-    <hr>
-    <form method="POST">
+    <h2>Contacto de la agenda</h2>
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="form-group">
-            {{ form.as_p }}
-        </div>
-        <button type="submit" class="btn btn-primary">Agregar</button>
+            {{ form.as_ul }}
+        <button type="submit" class="buttons">Agregar</button>
     </form>
 </div>
 {% endblock %}

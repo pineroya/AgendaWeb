@@ -18,11 +18,14 @@ class ContactList(ListView):
         context['url'] = avatar.imagen.url
         return context
 
-class ContactDetail(DetailView):
+class ContactDetail(DetailView): #no lleva al detalle del contacto seleccionado, solo actualiza la lista
     model = AgendaModel
     template_name = 'agenda/contact/contact_detail.html'
+    def get_object(self, queryset=None):
+        # Obtiene el objeto de modelo específico basado en el parámetro 'pk' de la URL
+        return self.model.objects.get(pk=self.kwargs['pk'])
 
-class ContactCreation(CreateView): #/new/ no funciona
+class ContactCreation(CreateView):
     model = AgendaModel
     form_class = agendaForm
     template_name = 'agenda/contact/contact_form.html'
@@ -38,6 +41,3 @@ class ContactDelete(DeleteView):
     model = AgendaModel
     template_name = 'agenda/contact/agendamodel_confirm_delete.html'
     success_url = reverse_lazy('contact:list')
-
-#templateview para projects, luego hacer su propia app
-

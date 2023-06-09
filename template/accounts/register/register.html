@@ -4,29 +4,30 @@
 <html lang="en">
   <head>
     {% block title %}
-    <title>Home</title>
+    <title>Registro de usuario</title>
     {% endblock %}
   </head>
 
 {% block content %}
   <body>
-    <main>
-      <div class="span9 contact_form">
-        <div id="note"></div>
-        <div id="fields"></div>
-        <form id="contact-form-face" class="clearfix" action="#" method="POST">
-            <table>
-            {% csrf_token %}
-        
-            {{form.as_table}}
-            
-            </table>
-            <button type="submit">Registrate aquí</button>
-        </form>
-
-      </div>
-    </main>
+      <section class="form-login">
+        <h3>Formulario de registro de usuario</h3>
+        <div>
+          <form method="post" action="{% url 'Register' %}">
+              
+              {% csrf_token %}
+              {{form.as_ul}}
+              <button class="buttons" type="submit">Aceptar</button>
+          </form>
+        </div>
+      </section>
   </body>
 
 </html>
 {% endblock %}
+
+
+<!-- <input type="text" name="username" value="" placeholder="Usuario" class="controls">
+<input type="email" name="email" value="" placeholder="Emails" class="controls">
+<input type="password" name="password" value="" placeholder="Contraseña" class="controls">
+<input type="password" name="password" value="" placeholder="Repetir Contraseña" class="controls"> -->
