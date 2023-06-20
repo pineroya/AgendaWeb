@@ -13,18 +13,9 @@ from bs4 import BeautifulSoup
 
 # Create your views here.
 
-class HomeView(LoginRequiredMixin, TemplateView):
-    template_name = 'home/home.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        avatar = Avatar.objects.filter(user=self.request.user).first()
-        context['url'] = avatar.imagen.url
-        return context
-
 def blog(request):
     avatares = Avatar.objects.filter(user=request.user.id)
-    return render (request, 'agenda/blog.html', {'url':avatares[0].imagen.url})
+    return render (request, 'blog/blog.html', {'url':avatares[0].imagen.url})
 
 #####
 
@@ -53,7 +44,7 @@ def blogpost(request):
         'equipo':equipos
     }
     
-    return render (request, 'agenda/blog-post.html', context=context)
+    return render (request, 'blog/blog-post.html', context=context)
 
 
 
@@ -61,5 +52,5 @@ def blogpost(request):
 
 def portfolio(request):
 
-    return render (request, 'agenda/portfolio-post.html')
+    return render (request, 'blog/portfolio-post.html')
 

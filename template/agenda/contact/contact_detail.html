@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 {% block title %}
-    <title>Detalle | list</title>
+    <title>Detalle del contacto</title>
 {% endblock %}
 </head>
 
@@ -22,21 +22,19 @@
       </tr>
   </thead>
   <tbody>
-  {% for contact in object_list %}
       <tr>
-          <td>{{ contact.name }} {{ contact.last_name }}</td>
-          <td><img width= "60px" height="60px" src="{{ contact.picture.url}}"></td>
-          <td>{{ contact.tel_number }}</td>
-          <td>{{ contact.addres }}</td>
-          <td>{{ contact.email }}</td>
-          <td>{{ contact.web }}</td>
-          <td>{{ contact.bio }}</td>
-          <p>
-              <a class="btn btn-primary" href="{% url 'contact:list' %}">Regresar a la lista de contactos</a>
-          </p>
+          <td>{{ object.name }} {{ object.last_name }}</td>
+          <td><img width= "60px" height="60px" src="{{ object.picture.url}}"></td>
+          <td>{{ object.tel_number }}</td>
+          <td>{{ object.addres }}</td>
+          <td>{{ object.email }}</td>
+          <td>{{ object.web }}</td>
+          <td>{{ object.bio }}</td>
       </tr>
-  {% endfor %}
   </tbody>
 </table>
+<p>
+    <a class="btn btn-primary" href="{% url 'contact:list' %}">Regresar a la lista de contactos</a>
+</p>
 {% endblock %}
 </html>

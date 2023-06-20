@@ -13,8 +13,6 @@ footer ::-moz-selection {background: #fff; color:#000;}
 .cleancode_block ::selection {background: #fff; color:#000;}
 .cleancode_block ::-moz-selection {background: #fff; color:#000;}
 
-
-
 body {
 	overflow-x:hidden;
 	position:relative;

@@ -1,4 +1,3 @@
-import imp
 from django.shortcuts import render, redirect
 from django.views import View
 from django.core.mail import send_mail
@@ -6,18 +5,15 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView, FormView
+from django.views.generic.edit import CreateView
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
-from loginApp.forms import UserRegisterForm, UserEditForm, ContactForm, ProfileEditForm, AvatarForm
-from django.db.models.signals import post_save
+from loginApp.forms import UserRegisterForm, UserEditForm, ProfileEditForm, AvatarForm
 from django.dispatch import receiver
-from django.contrib.auth.models import User
 from loginApp.models import Avatar, Profile
 
 
 # Create your views here.
-
 
 class RegisterView(CreateView):
     form_class = UserRegisterForm

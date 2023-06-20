@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'agendaApp',
     'loginApp',
     'blogApp',
-    'contactoApp'
+    'contactoApp',
+    'homeApp',
 ]
 
 MIDDLEWARE = [

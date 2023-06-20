@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	{% block title %}
+	<meta charset="utf-8">
+	<title>Blog | blogpost</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<link rel="shortcut icon" href={% static "images/favicon.ico" %}>	
+	{% endblock %}
+	{% block content %}
+		<!-- BLOG -->
+		<section id="blog">
+			<table>
+				<thead>
+				  <tr>
+					<th>Nombres</th>
+					<th>Apellidos</th>
+					<th>Puntos</th>
+					<th>Equipo</th>
+				  </tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+						{% for nombres in nombre %}
+							{{ nombres }}&nbsp;&nbsp; <br>
+						{% endfor %}
+						</td>
+					
+						<td>
+						{% for apellidos in apellido %}
+							{{ apellidos }}&nbsp;&nbsp; <br>
+						{% endfor %}
+						</td>
+
+						<td>
+							{% for puntos in punto %}
+								({{ puntos }})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+							{% endfor %}
+						</td>
+
+						<td>
+							{% for equipos in equipo %}
+								{{ equipos }} <br>
+							{% endfor %}
+						</td>
+				  	
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		<!-- //BLOG -->
+	{% endblock %}
+</html>

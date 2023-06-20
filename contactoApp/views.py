@@ -1,6 +1,5 @@
 from django.core.mail import EmailMessage
-from loginApp.models import Avatar
-from django.views.generic import TemplateView, FormView
+from django.views.generic import FormView
 from .forms import ContactoForm
 
 # Create your views here.
@@ -27,9 +26,3 @@ class ContactanosView(FormView):
         email.send()
 
         return super().form_valid(form)
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     avatar = Avatar.objects.filter(user=self.request.user).first()
-    #     context['url'] = avatar.imagen.url
-    #     return context

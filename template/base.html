@@ -75,18 +75,15 @@
 									<a href="{% url 'Home' %}">Home</a>
 								</li>
 								<li class="sub-menu {% if request.path == '/list' %}active{% endif %}">
-									<a  href="{% url 'contact:list' %}">Agenda</a>
+									<a  href="{% url 'contact:list' %}">tus contactos</a>
 									<ul>
 										<li class="sub-menu {% if request.path == '/new' %}active{% endif %}">
 											<a href="{% url 'contact:new' %}">Nuevo contacto</a>
 										</li>
 									</ul>
 								</li>
-								<li class="scroll_btn last {% if request.path == '/contactanos' %}active{% endif %}">
-									<a href="{% url 'Contactanos' %}">Contactanos</a>
-								</li>
-								<li class="sub-menu">
-									<a href="javascript:void(0);">Pages</a>
+								<li class="sub-menu {% if request.path == '/blog' %}active{% endif %}">
+										<a href="{% url 'Blog' %}">Blog</a>
 									<ul>
 										<li class="sub-menu {% if request.path == '/blog' %}active{% endif %}">
 											<a href="{% url 'Blog' %}">Blog</a>
@@ -113,6 +110,9 @@
 								{% else %}
 									<li><a href="{% url 'Login'%}?next={{request.path}}">Login</a></li>
 								{% endif %}
+								<li class="scroll_btn last {% if request.path == '/contactanos' %}active{% endif %}">
+									<a href="{% url 'Contactanos' %}">Contactanos</a>
+								</li>
 							</ul>
 						</nav>
 					</div><!-- //MENU -->

@@ -1,43 +1,37 @@
-from django.shortcuts import render, HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from loginApp.models import Avatar
+from django.contrib.auth.mixins import LoginRequiredMixin
+from homeApp.views import CustomContextAvatarMixin
 from .models import AgendaModel
 from .forms import agendaForm
 
 # Create your views here.
 
-class ContactList(ListView):
+class ContactList(LoginRequiredMixin, CustomContextAvatarMixin, ListView):
     model = AgendaModel
     template_name = "agenda/contact/contact_list.html"
     context_object_name = 'contacts'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        avatar = Avatar.objects.filter(user=self.request.user).first()
-        context['url'] = avatar.imagen.url
-        return context
-
-class ContactDetail(DetailView): #no lleva al detalle del contacto seleccionado, solo actualiza la lista
+class ContactDetail(CustomContextAvatarMixin, DetailView):
     model = AgendaModel
     template_name = 'agenda/contact/contact_detail.html'
-    def get_object(self, queryset=None):
-        # Obtiene el objeto de modelo específico basado en el parámetro 'pk' de la URL
-        return self.model.objects.get(pk=self.kwargs['pk'])
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
-class ContactCreation(CreateView):
+class ContactCreation(LoginRequiredMixin, CustomContextAvatarMixin, CreateView):
     model = AgendaModel
     form_class = agendaForm
     template_name = 'agenda/contact/contact_form.html'
     success_url = reverse_lazy('contact:list')
 
-class ContactUpdate(UpdateView):
+class ContactUpdate(CustomContextAvatarMixin, UpdateView):
     model = AgendaModel
     template_name = 'agenda/contact/contact_form.html'
     fields = ['name', 'last_name', 'tel_number', 'addres', 'email', 'web', 'bio', 'picture']
     success_url = reverse_lazy('contact:list')
 
-class ContactDelete(DeleteView):
+class ContactDelete(CustomContextAvatarMixin, DeleteView):
     model = AgendaModel
     template_name = 'agenda/contact/agendamodel_confirm_delete.html'
     success_url = reverse_lazy('contact:list')
