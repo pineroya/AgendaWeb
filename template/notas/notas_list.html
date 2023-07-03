@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	{% block title %}
+	<meta charset="utf-8">
+	<title>Notas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<link rel="shortcut icon" href={% static "images/favicon.ico" %}>	
+	{% endblock %}
+	{% block content %}
+	<h3>Necesito notas en su menú desplegable, notas en class="card", fecha, hora.</h3>
+	<a href="{% url 'notas:notaform' %}">Nueva nota</a>
+
+	<div>
+	{% for nota in listanotas %}
+	<tr>
+		<p>Titulo: {{ nota.titulo }}</p>
+		<p>Nota:{{ nota.camponota }}</p>
+		<p>Autor: {{ nota.autor }}</p>
+        <p>
+            {% for categoria in nota.categorias.all %}
+			Categorías:{{ categoria.nombre }}
+            {% endfor %}
+		</p>
+		<p>Fecha de creación: {{ nota.fecha_creacion }}</p>
+		<p>
+			<a class="buttons" href="{% url 'notas:detail' nota.id %}">Ver</a> | 
+			<a class="buttons" href="{% url 'notas:edit' nota.id %}">Editar</a> | 
+			<a class="buttons" href="{% url 'notas:delete' nota.id %}">Borrar</a> 
+		</p>
+	</tr>
+	{% endfor %}
+	</div>
+	{% endblock %}
+</html>

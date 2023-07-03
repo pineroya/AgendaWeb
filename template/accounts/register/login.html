@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,9 +11,9 @@
 
 {% block content %}
   <body>
-    <section class="form-login">
+    <section style="margin:auto; width:50%;">
 
-        <p>Formulario login</p>
+        <h3 style="text-align:center">Formulario login</h3>
 
         {% if form.errors %}
           <p>Tu nombre o contraseña son incorrectos, por favor intenta nuevamente.</p>
@@ -20,9 +21,8 @@
         
         <form method="post" action="{% url 'Login' %}">
           {% csrf_token %}
-          <input type="text" name="username" value="" placeholder="Usuario" class="controls">
-          <input type="password" name="password" value="" placeholder="Contraseña" class="controls">
-          <input class="buttons" type="submit" name="" value="Ingresar">
+          {{ form|crispy }}
+          <button type="submit" class="buttons">Aceptar</button>
         </form>
         
         {# Assumes you setup the password_reset view in your URLconf #}

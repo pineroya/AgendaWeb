@@ -12,6 +12,6 @@ urlpatterns = [
     url(r'^list', ContactList.as_view(), name='list'),
     url(r'^new$', ContactCreation.as_view(), name='new'),
     url(r'^detail(?P<pk>\d+)$', ContactDetail.as_view(), name='detail'),
-    url(r'^editar/(?P<pk>\d+)$', ContactUpdate.as_view(), name='edit'),
-    url(r'^borrar/(?P<pk>\d+)$', ContactDelete.as_view(), name='delete'),
+    url(r'^edit/(?P<pk>\d+)$', ContactUpdate.as_view(), name='edit'),
+    url(r'^delete/(?P<pk>\d+)$', ContactDelete.as_view(), name='delete'),
 ]

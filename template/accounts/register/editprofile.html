@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,15 +9,15 @@
     {% endblock %}
   </head>
   {% block content %}
-  <section  class="form-perfil">
-    <div>
-        <h5>Editar perfil de {{ request.user.username }}</h5>
+  <section>
+    <div style="margin:auto; width:50%;">
+        <h3 style="text-align:center">Editar perfil de {{ request.user.username }}</h3>
             <div>
                 <form action="" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
-                  {{ user_form.as_ul }}
-                  {{ profile_form.as_ul }}
-                  {{ avatar_form.as_ul }}
+                  {{ user_form|crispy }}
+                  {{ profile_form|crispy }}
+                  {{ avatar_form|crispy }}
                     <input type="submit" value="Actualizar perfil" class="buttons">
                 </form>
             </div>

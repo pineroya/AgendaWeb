@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% block title %}
+    <title>Contacto | list</title>
+{% endblock %}
+</head>
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    ¿Estás seguro que deseas borrar el Contacto "{{ object }}"?
+    <input type="submit" value="Borrar" />
+</form>
+
+{% endblock %}
+</html>

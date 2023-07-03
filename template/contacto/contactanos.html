@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,15 +13,13 @@
   <body>
     <main>
       <div style="margin:auto; width:50%;">
-        <h1>Contactanos vía mail</h1>
+        <h3 style="text-align:center">Contactanos vía mail</h3>
       </div>
         <!-- CONTACT FORM -->
         <form id="contact-form-face" class="clearfix" action="#" method="POST" style="margin:auto; width:50%;">
             <table>
             {% csrf_token %}
-        
-            {{form.as_table}}
-            
+            {{form|crispy}}
             </table>
             <button type="submit">Enviar correo</button>
         </form>

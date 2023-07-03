@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% block title %}
+    <title> Categorias de notas </title>
+{% endblock %}
+</head>
+
+{% block content %}
+
+    {% for nota in categorias %}
+
+        <section class="page-section clearfix">
+            <div class="container">
+                <div class="intro">
+                        <div style="color:black" class="intro-text left-0 text-center bg-faded p-5 rounded">
+                            <h2 class="section-heading mb-4">
+                                <span class="section-heading-lower">{{nota.nombre}}</span>
+                                <span class="section-heading-upper">{{nota.created}}</span>
+                            </h2>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+    {% endfor %}
+
+    <section>
+        <div style="width: 75%; margin: auto; text-align: center; color: white;">
+            Categorías: &nbsp; &nbsp;
+
+            {% for note in notas %}
+                {% for categoria in note.categorias.all %}
+                    <a href="{% url 'Categoria' categoria.id %}" class="linksCategorias">{{categoria.nombre}}</a> &nbsp; &nbsp;
+                {% endfor %}
+            {% endfor %}
+
+        </div>
+    </section>
+    
+{% endblock %}
