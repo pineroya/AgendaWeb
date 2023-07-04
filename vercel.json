@@ -1,0 +1,13 @@
+{
+    "builds": [{
+        "src": "AgendaWeb/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.8" }
+    }],
+    "router": [
+        {
+            "src": "/(.*)",
+            "dest": "AgendaWeb/wsgi.py"
+        }
+    ]
+}

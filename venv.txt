@@ -1,0 +1,3 @@
+cd C:\Users\yamil\Desktop\python3.8.2\venv\Scripts
+activate
+deactivate
