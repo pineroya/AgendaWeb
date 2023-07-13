@@ -1,5 +1,3 @@
 cd C:\Users\yamil\Desktop\python3.8.2\AgendaWeb\venv\Scripts
 activate
 deactivate
-pgadmin.admin2020
-anterior.wixo2020
