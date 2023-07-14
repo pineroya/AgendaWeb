@@ -1,0 +1,41 @@
+[33mcc94706[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m configurando postgre_url
+[33m044eeb8[m configurando postgres_url
+[33m93fdd13[m coreccion build_files migrate auth
+[33m98f72fe[m configuracion database_url con railway
+[33maf03486[m configuracion postgreSQL
+[33ma304183[m con database sqlite3
+[33m22bc714[m sin database sqlite3
+[33m7e65e8d[m updateRequir1
+[33m539277d[m updateRequir
+[33md0c670f[m updateRequirements1
+[33meb90ad5[m updateRequirements
+[33mf484b09[m cambio a python3.10.11 y nuevo venv
+[33mabe22a7[m correccion version python
+[33m889f41d[m psicopg2binary
+[33m0cf0658[m psicopg2
+[33mca8acab[m upgrade build_files3
+[33md68d74e[m upgrade build_files2
+[33mb5031ca[m upgrade build_files
+[33mfdadac8[m arreglos en build_giles
+[33m310807a[m resubiendo repo
+[33m52f0704[m Update vercel.json
+[33mb8c5e96[m Rename AgendaWeb/build_files.sh to build_files.sh
+[33m5b7c2b2[m Create build_files.sh
+[33mbf9ca55[m Update urls.py agendaweb
+[33m67173a5[m Update settings.py
+[33m0ddffd6[m Update requirements.txt
+[33m7131fae[m Update requirements.txt
+[33m5e5a931[m arreglo psycopg2
+[33m2fabb77[m arreglo vercel.json
+[33m9b7a4c2[m configuracion wsgi para vercel.app
+[33ma943301[m creacion app para notas con crud y lista la interfas de usuario para formularios
+[33m2ac1bd1[m arreglo detalle de contacto agenda, customContextAvatar y separacion home con blogApp
+[33mf51a320[m correccion en clases de formularios para login y registro, ahora si se puede crear contacto de la agenda
+[33mf18c29d[m Terminado app Contacto para que el usuario envie mail de consulta
+[33m5c008ef[m cambios varios
+[33m478da69[m Registracion terminado, login ok
+[33m68bd4f1[m Arreglando detalles menores en el login y registro de usuario
+[33m95d10e8[m[33m ([m[1;31mmain/main[m[33m)[m corección forms en formulario
+[33m08c708a[m falta corregir las url no encontradas
+[33m0b54f63[m contact sin terminar con vistas basadas en clases
+[33m88e8bb3[m creacion agenda web con login
