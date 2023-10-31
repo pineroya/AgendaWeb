@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 	{% block title %}
@@ -16,11 +15,10 @@
 
 	<div style="margin:auto; width:50%;">
 		<h3 style="text-align:center">crear nota</h3>
-		<p>Se podria llevar el formulario a la lista y con desplegable abrir el formulario y que se guarde en el instante?</p>
-		<form method="POST">
+		<form class="contact_field" method="POST">
 			{% csrf_token %}
-			{{ form|crispy }}
-			<button type="submit" class="buttons">Agregar</button>
+			{{ form.as_ul }}
+			<button type="submit" class="contact_btn">Guardar</button>
 		</form>
 	</div>
 	{% endblock %}

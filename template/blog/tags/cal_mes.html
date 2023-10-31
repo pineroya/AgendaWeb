@@ -1,0 +1,26 @@
+<table class="cal_month_calendar">
+    <tr>
+        {% for day in headers %}
+        <th>{{ day|date:"D"|slice:":3" }}</th>
+        {% endfor %}
+    </tr>
+    {% for week in calendar %}
+    <tr>
+        {% for day in week %}
+        <td{% if not day.in_month %} class="cal_not_in_month"{% endif %}>
+            {% if day.event %}
+                <a href="/blog/{{ day.day|date:'Y/m/d' }}" class="cal_event">{{ day.day|date:'j' }}</a>
+            {% else %}
+                {{ day.day|date:'j' }}
+            {% endif %}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+<!-- para usar el calendario se carga en otro template así
+{% load cal_mes %}
+{% cal_mes %} -->

@@ -11,29 +11,37 @@
 	
 	<link rel="shortcut icon" href={% static "images/favicon.ico" %}>	
 	{% endblock %}
-	{% block content %}
-	<h3>Necesito notas en su menú desplegable, notas en class="card", fecha, hora.</h3>
-	<a href="{% url 'notas:notaform' %}">Nueva nota</a>
 
-	<div>
-	{% for nota in listanotas %}
-	<tr>
-		<p>Titulo: {{ nota.titulo }}</p>
-		<p>Nota:{{ nota.camponota }}</p>
-		<p>Autor: {{ nota.autor }}</p>
-        <p>
-            {% for categoria in nota.categorias.all %}
-			Categorías:{{ categoria.nombre }}
-            {% endfor %}
-		</p>
-		<p>Fecha de creación: {{ nota.fecha_creacion }}</p>
-		<p>
-			<a class="buttons" href="{% url 'notas:detail' nota.id %}">Ver</a> | 
-			<a class="buttons" href="{% url 'notas:edit' nota.id %}">Editar</a> | 
-			<a class="buttons" href="{% url 'notas:delete' nota.id %}">Borrar</a> 
-		</p>
-	</tr>
-	{% endfor %}
-	</div>
+	{% block content %}
+	<a class="contact_btn" href="{% url 'notas:notaform' %}">Nueva nota</a>
+	<h2>hacer un calendario con recordatorios y alarmas</h2>
+	<div class="note-container">
+		{% for nota in listanotas %}
+		<div class="note">
+		  <div class="note-header">
+			<h3>{{ nota.titulo }}</h3>
+			<div class="note-actions">
+			  <a class="edit-button" href="{% url 'notas:edit' nota.id %}">Editar</a>
+			  <a class="delete-button" href="{% url 'notas:delete' nota.id %}">Borrar</a>
+			</div>
+		  </div>
+		  <div class="note-content">
+			{{ nota.camponota }}
+		  </div>
+		  <div class="note-footer">
+			<ul>
+			  <li>Autor: {{ nota.autor }}</li>
+			  <li>Categorías:
+				{% for categoria in nota.categorias.all %}
+				  {{ categoria.nombre }}
+				{% endfor %}
+			  </li>
+			  <li>Fecha de creación: {{ nota.fecha_creacion }}</li>
+			</ul>
+		  </div>
+		</div>
+		{% endfor %}
+	  </div>
+		
 	{% endblock %}
 </html>

@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'contactoApp',
     'homeApp',
     'notasApp',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'contactoApp.context_processors.contactanos_form',
             ],
         },
     },
@@ -149,8 +149,6 @@ EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
 EMAIL_HOST_USER = 'f1d176033b926d'
 EMAIL_HOST_PASSWORD = '26f9e4889bcc7a'
 EMAIL_PORT = '2525'
-
-CRISPY_TEMPLATE_PACK='bootstrap4'
 
 MESSAGE_TAGS={
     mensajes_de_error.DEBUG: 'debug',

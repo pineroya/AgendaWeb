@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from homeApp.views import CustomContextAvatarMixin
 from agendaApp.models import AgendaModel
 from agendaApp.forms import agendaForm
+from django.db.models import Q
 
 # Create your views here.
 
@@ -11,6 +12,19 @@ class ContactList(LoginRequiredMixin, CustomContextAvatarMixin, ListView):
     model = AgendaModel
     template_name = "agenda/contact_list.html"
     context_object_name = 'contacts'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            return AgendaModel.objects.filter(
+                Q(name__icontains=query) | Q(last_name__icontains=query)
+            )
+        return AgendaModel.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_query'] = self.request.GET.get('q', '')
+        return context
 
 class ContactDetail(CustomContextAvatarMixin, DetailView):
     model = AgendaModel

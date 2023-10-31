@@ -1,9 +1,10 @@
 beautifulsoup4==4.11.1
 Django==3.2.12
-django-crispy-forms==1.14.0
 pandas==1.5.1
 Pillow==9.2.0
 psycopg2-binary==2.9.6
 requests==2.31.0
-dj-database-url==2.0.0
-python-decouple==3.8
+django-scheduler==0.10.1
+icalendar==5.0.7
+dj-database-url==2.0.0 todavia no está instalado
+python-decouple==3.8 todavía no

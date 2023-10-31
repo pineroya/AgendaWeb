@@ -1,12 +1,9 @@
 from django import forms
 from django.utils import timezone
 
-
 class ContactoForm(forms.Form):
-    nombre = forms.CharField(max_length=100, label='Nombre', required=True, widget=forms.TextInput(attrs={'class':'form-control'}))
-    email = forms.EmailField(label='Email', required=True, widget=forms.TextInput(attrs={'class':'form-control'}))
-    asunto = forms.CharField(max_length=200, label='Asunto', required=True, widget=forms.TextInput(attrs={'class':'form-control'}))
-    mensaje = forms.CharField(label = 'Mensaje', widget=forms.Textarea(attrs={'class':'form-control'}))
+    email = forms.EmailField(label='Tu mail de contacto', required=True)
+    mensaje = forms.CharField(widget=forms.Textarea(attrs={'rows': 6}))
 
     def clean(self):
         cleaned_data = super().clean()

@@ -7,7 +7,7 @@ from django.urls import reverse
 
 class Avatar(models.Model):
     user=models.ForeignKey(User, on_delete = models.CASCADE)
-    imagen=models.ImageField(upload_to='media/avatares', null=True, blank=True)
+    imagen=models.ImageField(upload_to='avatares', null=True, blank=True)
 
 class Profile(models.Model):
     user=models.OneToOneField(User, null=True, on_delete=models.CASCADE)

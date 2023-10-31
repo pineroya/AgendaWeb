@@ -90,3 +90,9 @@ class EditProfileView(LoginRequiredMixin, View):
         }
         return render(request, 'accounts/register/editprofile.html', context)
     
+# class CustomContextAvatarMixin: #Lleva el objeto Avatar a todas las clases
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         avatar = Avatar.objects.filter(user=self.request.user).first()
+#         context['url'] = avatar.imagen.url
+#         return context

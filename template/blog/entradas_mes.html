@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block title %}
+  	<head>
+		<meta charset="utf-8">
+		<title>miblog|{{ month|date }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		
+		<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+  	</head>
+{% endblock %}
+
+{% block cabezera %}miblog|{{ month|date:"F" }}{% endblock %}
+
+{% block contenido %}
+    <h2>  Entradas del Mes de {{ month|date:"F" }} <h2>
+{% for entrada in entradas %}
+
+    {% ifchanged %} <h3> {{entrada.fecha_creacion|date:"Y/m/d"}}</h3>{% endifchanged %}
+
+    <li> {{ forloop.counter }}<a href="{{entrada.get_absolute_url }}">
+{{ entrada }}</a></li>
+{% endfor %}
+</ul>
+<table id="wp-calendar">
+	<tr>
+		{% for day in headers %}
+		<th>{{ day|date:"D"|slice:":3" }}</th>
+		{% endfor %}
+	</tr>
+	{% for week in calendar %}
+		<tr>
+			{% for day in week %}
+			<td>{% if not day.in_month %} class="cal_not_in_month"{% endif %}>
+				{% if day.event %}
+					<a href="/blog/{{ day.day|date:'Y/m/d' }}">{{ day.day|date:"j" }}</a>
+				{% else %}
+					{{ day.day|date:"j" }}
+				{% endif %}
+			</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+</table>
+{% endblock %}

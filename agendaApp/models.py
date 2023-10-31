@@ -10,4 +10,4 @@ class AgendaModel(models.Model):
     email = models.EmailField()
     web = models.CharField(max_length=240)
     bio = models.TextField(max_length=300)
-    picture = models.ImageField(upload_to='media/agenda')
+    picture = models.ImageField(upload_to='agenda')

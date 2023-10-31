@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block title %}
+  	<head>
+		<meta charset="utf-8">
+        <title>Busqueda{% if query %} Resultados{% endif %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		
+		<link rel="shortcut icon" href={% static "images/favicon.ico" %}>
+  	</head>
+{% endblock %}
+
+<body>
+    <h1>Buscar</h1>
+       <form action="." method="GET">
+          <label for="q">Buscar: </label>
+          <input type="text" name="q" value="{{ query|escape }}">
+       <input type="submit" value="Search">
+    </form>
+
+{% if query %}
+    <h2>Resultados para "{{ query|escape }}":</h2>
+
+        {% if results %}
+            <ul>
+                {% for entradas in results %}
+                    <li><a href="{{ entradas.get_absolute_url }}">{{ entradas|escape }}</l1>
+                {% endfor %}
+            </ul>
+        {% else %}
+        <p>No se encontraron Entradas para {{ query|escape }}</p>
+    {% endif %}
+{% endif %}
+</body>
+
+</html>

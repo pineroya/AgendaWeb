@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,10 +11,10 @@
 {% block content %}
 <div  style="margin:auto; width:50%;">
     <h3 style="text-align:center">Contacto de la agenda</h3>
-    <form method="POST" enctype="multipart/form-data">
+    <form class="contact_field" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="buttons">Agregar</button>
+        {{ form.as_ul }}
+        <button type="submit" class="contact_btn">Agregar</button>
     </form>
 </div>
 {% endblock %}

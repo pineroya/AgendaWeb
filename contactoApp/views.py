@@ -1,28 +1,37 @@
 from django.core.mail import EmailMessage
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView
 from .forms import ContactoForm
+from django.urls import reverse_lazy
+from homeApp.views import CustomContextAvatarMixin
+from django.shortcuts import render
 
-# Create your views here.
+#Create your views here.
 
 class ContactanosView(FormView):
-    template_name = "contacto/contactanos.html"
+    template_name = "base.html"
     form_class = ContactoForm
-    success_url = '/contactanos/?valido'
+    success_url = '/contacto_exito/'
 
     def form_valid(self, form):
-        nombre = form.cleaned_data['nombre']
         email = form.cleaned_data['email']
-        asunto = form.cleaned_data['asunto']
         mensaje = form.cleaned_data['mensaje']
-        fecha = form.cleaned_data['fecha']
+        fecha = form.cleaned_data['fecha'] #no está en uso todavia
 
         # Lógica para enviar el correo
         email = EmailMessage(
-            "Mensaje desde 'The Blog'",
-            "Usuario {}, con la dirección {}, escribe lo siguiente:\n\n{}".format(nombre, email, mensaje),
+            "Mensaje desde 'El Cuaderno'",
+            "Usuario con la dirección {}, escribe lo siguiente:\n\nAsunto: {}\n\n{}".format(email, mensaje, fecha),
             "", ["mispruebas.yam@gmail.com"],
             reply_to=[email]
         )
         email.send()
 
         return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['contactanos_form'] = self.get_form()
+        return context
+
+class Contacto_exito(CustomContextAvatarMixin, TemplateView):
+    template_name = 'contacto/contacto_exito.html'

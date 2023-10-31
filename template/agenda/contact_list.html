@@ -9,6 +9,12 @@
 </head>
 
 {% block content %}
+<!-- SEARCH FORM -->
+<div id="search-form" class="pull-right">
+	<form method="get" action="{% url 'contact:list' %}">
+		<input type="text" name="q" placeholder="Buscar contacto" value="{{ search_query }}" />
+	</form>
+</div><!-- SEARCH FORM -->
 <table class="table table-bordered">
     <thead>
         <tr class="texto-destacado">
@@ -31,11 +37,11 @@
             <td>{{ contact.email }}</td>
             <td>{{ contact.web }}</td>
             <td>{{ contact.bio }}</td>
-            <p>
-                <a class="btn btn-primary" href="{% url 'contact:detail' contact.id %}">Ver</a> | 
-                <a class="btn btn-primary" href="{% url 'contact:edit' contact.id %}">Editar</a> | 
-                <a class="btn btn-primary" href="{% url 'contact:delete' contact.id %}">Borrar</a> 
-            </p>
+            <td>
+                <a class="contactlist_btn" href="{% url 'contact:detail' contact.id %}">Ver</a> | 
+                <a class="contactlist_btn" href="{% url 'contact:edit' contact.id %}">Editar</a> | 
+                <a class="contactlist_btn" href="{% url 'contact:delete' contact.id %}">Borrar</a> 
+            </td>
         </tr>
     {% endfor %}
     </tbody>

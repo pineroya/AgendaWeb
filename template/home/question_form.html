@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+    <title>Home</title>
+    {% endblock %}
+  </head>
+
+{% block content %}
+  <body class="background-content">
+    <main>
+      <div>
+        {{ form.media }}
+        <form method="post">{% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Save">
+        </form>
+      </div>
+    </main>
+  </body>
+
+</html>
+{% endblock %}

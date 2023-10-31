@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,10 +13,10 @@
       <section style="margin:auto; width:50%;">
         <h3 style="text-align:center">Formulario de registro de usuario</h3>
         <div>
-          <form method="post" action="{% url 'Register' %}">
+          <form class="contact_field" method="post" action="{% url 'Register' %}">
               {% csrf_token %}
-              {{ form|crispy }}
-              <button class="buttons" type="submit">Aceptar</button>
+              {{ form }}
+              <button class="contact_btn" type="submit">Aceptar</button>
           </form>
         </div>
       </section>

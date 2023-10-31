@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	{% block title %}
+	<meta charset="utf-8">
+	<title>Notas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<link rel="shortcut icon" href={% static "images/favicon.ico" %}>	
+	{% endblock %}
+
+	{% block content %}
+	<a class="contact_btn" href="#">Event list</a>
+	<div class="note-container">
+		{% for ev in event %}
+		<div class="note">
+		  <div class="note-header">
+			<h3>{{ ev }}</h3>
+			<div class="note-actions">
+			  <a class="edit-button">Editar</a>
+			  <a class="delete-button">Borrar</a>
+			</div>
+		</div>
+		{% endfor %}
+	  </div>
+		
+	{% endblock %}
+</html>

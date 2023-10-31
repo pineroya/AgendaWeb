@@ -1,11 +1,7 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
-from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView
+from django.views import generic
 from loginApp.models import Avatar
-
 
 # Create your views here.
 
